@@ -2,8 +2,8 @@
 
 namespace APIProject.Shared.Communication
 {
-    public class AccountDetailResponse : BaseResponse
+    public class AccountDetailResponse
     {
-        public AccountDetailDto AccountDetails { get; set; }
+        public List<AccountDetailDto> AccountDetails { get; set; }
     }
 }

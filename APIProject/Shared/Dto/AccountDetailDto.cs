@@ -11,9 +11,9 @@
         public int LeaguePoints { get; set; }
         public int Wins { get; set; }
         public int Losses { get; set; }
-        public bool HotsTreak { get; set; }
+        public bool HotStreak { get; set; }
         public bool Veteran { get; set; }
         public bool Inactive { get; set; }
-        public MiniSeries MiniSeries { get; set; }
+        public MiniSeries? MiniSeries { get; set; }
     }
 }

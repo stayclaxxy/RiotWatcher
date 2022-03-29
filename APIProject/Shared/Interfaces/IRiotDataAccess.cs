@@ -6,5 +6,6 @@ namespace APIProject.Shared.Interfaces
     public interface IRiotDataAccess
     {
         public Task<SummonerResponse> GetSummonerInfoAsync(string summonerName);
+        public Task<AccountDetailResponse> GetAccountDetailResponseAsync(string encryptedId);
     }
 }

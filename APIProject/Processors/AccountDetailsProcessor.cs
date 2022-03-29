@@ -17,5 +17,17 @@ namespace APIProject.Processors
         {
             return await _accountDao.GetSummonerInfoAsync(summonerName);
         }
+        public async Task<AccountDetailResponse> GetAccountDetailAsync(string encryptedId)
+        {
+            return await _accountDao.GetAccountDetailResponseAsync(encryptedId);
+        }
+        public async Task<CombinedDetailResponse> GetCombinedDetailAsync(string summonerId)
+        {
+            var resp = new CombinedDetailResponse();
+            resp.Summoner = await GetSummonerDetailsAsync(summonerId);
+            resp.AccountDetail = await GetAccountDetailAsync(resp.Summoner.Summoner.Id);
+            resp.Success = true;
+            return resp;
+        }
     }
 }
