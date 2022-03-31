@@ -17,7 +17,7 @@ namespace APIProject.Processors
         {
             return await _accountDao.GetSummonerInfoAsync(summonerName);
         }
-        public async Task<AccountDetailResponse> GetAccountDetailAsync(string encryptedId)
+        public async Task<List<AccountDetailResponse>> GetAccountDetailAsync(string encryptedId)
         {
             return await _accountDao.GetAccountDetailResponseAsync(encryptedId);
         }
@@ -25,7 +25,7 @@ namespace APIProject.Processors
         {
             var resp = new CombinedDetailResponse();
             resp.Summoner = await GetSummonerDetailsAsync(summonerId);
-            resp.AccountDetail = await GetAccountDetailAsync(resp.Summoner.Summoner.Id);
+            resp.AccountDetail = await GetAccountDetailAsync(resp.Summoner.Id);
             resp.Success = true;
             return resp;
         }

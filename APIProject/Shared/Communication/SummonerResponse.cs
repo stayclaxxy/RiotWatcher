@@ -2,8 +2,7 @@
 
 namespace APIProject.Shared.Communication
 {
-    public class SummonerResponse
+    public class SummonerResponse : SummonerDto
     {
-        public SummonerDto Summoner { get; set; }
     }
 }

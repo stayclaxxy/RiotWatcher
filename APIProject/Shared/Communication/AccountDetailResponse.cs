@@ -2,8 +2,7 @@
 
 namespace APIProject.Shared.Communication
 {
-    public class AccountDetailResponse
+    public class AccountDetailResponse : AccountDetailDto
     {
-        public List<AccountDetailDto> AccountDetails { get; set; }
     }
 }

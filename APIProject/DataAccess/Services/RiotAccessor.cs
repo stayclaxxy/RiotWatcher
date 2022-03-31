@@ -1,7 +1,6 @@
 ﻿using APIProject.Shared.Communication;
 using APIProject.Shared.Interfaces;
 using APIProject.Shared.Models;
-using Microsoft.AspNetCore.Mvc;
 using System.Web;
 
 namespace APIProject.DataAccess.Services
@@ -20,14 +19,14 @@ namespace APIProject.DataAccess.Services
             var encodedString = HttpUtility.UrlEncode(summonerName, System.Text.Encoding.UTF8);
             var request = new HttpRequestMessage(HttpMethod.Get, $"summoner/v4/summoners/by-name/{encodedString}");
             var result = await _httpClient.SendAsync(request);
-            SummonerResponse response = new SummonerResponse();
+            var response = new SummonerResponse();
 
             if(result != null && result.IsSuccessStatusCode)
             {
                 var summDetails = await result.Content.ReadFromJsonAsync<SummonerDto>();
                 if (summDetails != null)
                 {
-                    response.Summoner = new SummonerDto
+                    response = new SummonerResponse
                     {
                         AccountId = summDetails.AccountId,
                         ProfileIconId = summDetails.ProfileIconId,
@@ -49,15 +48,12 @@ namespace APIProject.DataAccess.Services
             return response;
         }
 
-        public async Task<AccountDetailResponse> GetAccountDetailResponseAsync(string encryptedId)
+        public async Task<List<AccountDetailResponse>> GetAccountDetailResponseAsync(string encryptedId)
         {
             var encodedString = HttpUtility.UrlEncode(encryptedId, System.Text.Encoding.UTF8);
             var request = new HttpRequestMessage(HttpMethod.Get, $"league/v4/entries/by-summoner/{encodedString}");
             var result = await _httpClient.SendAsync(request);
-            AccountDetailResponse response = new AccountDetailResponse
-            {
-                AccountDetails = new List<AccountDetailDto>()
-            };
+            List<AccountDetailResponse> response = new List<AccountDetailResponse>();
 
             if (result != null && result.IsSuccessStatusCode)
             {
@@ -66,7 +62,7 @@ namespace APIProject.DataAccess.Services
                 {
                     foreach (var detail in summDetails)
                     {
-                        response.AccountDetails.Add(new AccountDetailDto
+                        response.Add( new AccountDetailResponse
                         {
                             LeagueId = detail.LeagueId,
                             SummonerId = detail.SummonerId,

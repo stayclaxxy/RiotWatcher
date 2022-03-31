@@ -3,6 +3,6 @@
     public class CombinedDetailResponse : BaseResponse
     {
         public SummonerResponse Summoner { get; set; }
-        public AccountDetailResponse AccountDetail { get; set; }
+        public List<AccountDetailResponse> AccountDetail { get; set; }
     }
 }
