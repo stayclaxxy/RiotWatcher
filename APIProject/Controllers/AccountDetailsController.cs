@@ -5,7 +5,7 @@ namespace APIProject.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AccountDetailsController : ControllerBase
+    public class AccountDetailsController : ControllerBase, IAccountDetailsController
     {
         //private readonly ILogger<AccountDetailsController> _logger;
         private readonly IAccountDetailsProcessor _accountProcessor;
