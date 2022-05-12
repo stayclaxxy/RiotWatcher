@@ -17,7 +17,6 @@ builder.Services.AddHttpClient<IRiotDataAccess, RiotAccessor>(client =>
     client.DefaultRequestHeaders.Add("X-Riot-Token", builder.Configuration["RiotApiKey"]);
 });
 builder.Services.AddScoped<IAccountDetailsProcessor, AccountDetailsProcessor>();
-builder.Services.AddScoped<IAccountDetailsController, AccountDetailsController>();
 
 var app = builder.Build();
 
